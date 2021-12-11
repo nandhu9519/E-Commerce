@@ -1,0 +1,80 @@
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center" style="padding: 35px 35px 20px 35px; background-color: #ffffff;" bgcolor="#ffffff">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
+                <tr>
+                    <td align="center"
+                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
+                        <img src="https://img.icons8.com/carbon-copy/100/000000/checked-checkbox.png" width="125"
+                            height="120" style="display: block; border: 0px;" /><br>
+                        <h2 style="font-size: 30px; font-weight: 800; line-height: 36px; color: #333333; margin: 0;">
+                            Your Order is confirmed...! </h2>
+                    </td>
+                </tr>
+                <td align="center" height="100%" valign="top" width="100%"
+                    style="padding: 0 35px 35px 35px; background-color: #ffffff;" bgcolor="#ffffff">
+                    <br>
+                    <br><br>
+                    <br>
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
+                        style="max-width:660px;">
+                        <tr>
+                            <td align="center" valign="top" style="font-size:0;">
+                                <div
+                                    style="display:inline-block; max-width:50%; min-width:240px; vertical-align:top; width:100%;">
+                                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%"
+                                        style="max-width:300px;">
+                                        <tr>
+                                            <td align="left" valign="top"
+                                                style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
+                                                <p style="font-weight: 800;color: #333333;">Delivery Address</p>
+                                                <p style="color: #333333;">
+                                                    {{orderInfo.deliveryDetails.name}}<br>{{orderInfo.deliveryDetails.address}}<br>{{orderInfo.deliveryDetails.city}}<br>{{orderInfo.deliveryDetails.state}}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div
+                                    style="display:inline-block; max-width:50%; min-width:240px; vertical-align:top; width:100%;">
+                                    <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%"
+                                        style="max-width:300px;">
+                                        <tr>
+                                            <td align="left" valign="top"
+                                                style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
+                                                <p style="font-weight: 800;color: #333333;">Order Details</p>
+                                                <p style="color: #333333;">Payment mode:{{orderInfo.paymentMode}}<br>You
+                                                    need to pay: ₹{{orderInfo.totalAmount}}</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+    </tr>
+    <tr>
+        <td align="center" style="padding: 35px; background-color: #ffffff;" bgcolor="#ffffff">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
+
+                <tr>
+                    <td align="center" style="padding: 25px 0 15px 0;">
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <div class="view order">
+                                    <td align="center" style="border-radius: 5px;" bgcolor=""> <a href="/orders"
+                                            style="font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; background-color: #7952b3; padding: 15px 30px; border: 1px solid #7952b3; display: block;">View
+                                            Orders</a> </td>
+                                </div>
+                                <div class="shop again">
+                                    <td align="center" style="border-radius: 5px;" bgcolor=""> <a href="/"
+                                            style="font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; background-color: #7952b3; margin-left:15px ; padding: 15px 30px; border: 1px solid #7952b3; display: block;">Shop
+                                            again</a> </td>
+                                </div>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>

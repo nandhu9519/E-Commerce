@@ -1,0 +1,90 @@
+<div class="sidebar" data-color="purple" data-background-color="black" data-image="/assets/img/sidebar-3.jpg">
+
+    <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+    
+            Tip 2: you can also add an image using data-image tag
+        -->
+    <div class="col-md-12 logo_agile" style="">
+        <h1 class="text-center">
+            <div class="logo" style="">
+                <a href="/admin" style="color: white;  font-weight: lighter; font-family: " Roboto", " Helvetica"
+                    , " Arial" , sans-serif;">
+                    <img src="/images/logo2.png" alt=" " class="img-fluid">ETron Admin
+                </a>
+            </div>
+        </h1>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/product">
+                    <i class="material-icons">content_paste</i>
+                    <p>Product Management</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/category&brand">
+                    <i class="fa fa-ravelry" aria-hidden="true"></i>
+                    <p>Category & Brands</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/userManage">
+                    <i class="material-icons">person</i>
+                    <p>User Management</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/orderManage">
+                    <i class="material-icons">library_books</i>
+                    <p>Order Management</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/coupenManagement">
+                    <i class="fa fa-percent" aria-hidden="true"></i>
+                    <p>Coupen Management</p>
+                </a>
+            </li>
+            {{!-- <li class="nav-item ">
+                 <a class="nav-link" href="/admin/offerManagement">
+                    <i class="fa fa-inr" aria-hidden="true"></i>
+                    <p>Offer Management</p>
+                    <div class="dropdown-menu bg-dark" style="width: 100%;" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item text-white bg-dark" href="/admin/brandOffers">Brand offers</a>
+                    <a class="dropdown-item text-white bg-dark " href="/admin/productOffers">Product offers</a>
+                </div>
+                </a>
+            </li> --}}
+            <li class="nav-item">
+            <a class="nav-link dropdown"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-inr" aria-hidden="true"></i>
+              <p>Offer management</p>
+            </a>
+			<div class="dropdown-menu bg-dark" style="width: 100%;" aria-labelledby="dropdownMenuLink">
+				<a class="dropdown-item text-white bg-dark" href="/admin/brandOfferManagement">Brand offers</a>
+				<a class="dropdown-item text-white bg-dark " href="/admin/productOfferManagement">Product offers</a>
+			</div>
+          </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/bannerAds">
+                    <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                    <p>Manage Banners</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/reports">
+                    <i class="fa fa-table" aria-hidden="true"></i>
+                    <p>Reports</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

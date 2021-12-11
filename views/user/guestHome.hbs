@@ -1,0 +1,314 @@
+<!-- banner -->
+{{#if banners}}
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <!-- Indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+    </ol>
+    
+    <div class="carousel-inner">
+        {{#if banners.banner1}}
+        <div class="carousel-item item1 active" style=" background: url('/banners/{{banners.banner1._id}}.jpg') no-repeat center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;">
+            <div class="container">
+                <div class="w3l-space-banner">
+                    <div class="carousel-caption p-lg-5 p-sm-4 p-3">
+                        <p>Get
+                            <span>{{banners.banner1.discount}}%</span> Off
+                        </p>
+                        <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">ALL
+                            <span>{{banners.banner1.brand}}</span>
+                            products
+                        </h3>
+                        <p>{{banners.banner1.description}}
+                        </p>
+                        <a class="button2" href="/brandProducts?brandName={{banners.banner1.brand}}">Shop Now </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{#if banners.banner2}}
+        <div class="carousel-item item2" style="background: url('/banners/{{banners.banner2._id}}.jpg') no-repeat center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;">
+            <div class="container">
+                <div class="w3l-space-banner">
+                    <div class="carousel-caption p-lg-5 p-sm-4 p-3">
+                        <p>Get
+                            <span>{{banners.banner2.discount}}%</span> Off
+                        </p>
+                        <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">ALL
+                            <span>{{banners.banner2.brand}}</span>
+                            products
+                        </h3>
+                        <p>{{banners.banner2.description}}
+                        </p>
+                        <a class="button2" href="/brandProducts?brandName={{banners.banner2.brand}}">Shop Now </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{#if banners.banner3}}
+        <div class="carousel-item item3" style="background: url('/banners/{{banners.banner3._id}}.jpg') no-repeat center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;">
+            <div class="container">
+                <div class="w3l-space-banner">
+                    <div class="carousel-caption p-lg-5 p-sm-4 p-3">
+                        <p>Get
+                            <span>{{banners.banner3.discount}}%</span> Off
+                        </p>
+                        <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">ALL
+                            <span>{{banners.banner3.brand}}</span>
+                            products
+                        </h3>
+                        <p>{{banners.banner3.description}}
+                        </p>
+                        <a class="button2" href="/brandProducts?brandName={{banners.banner3.brand}}">Shop Now </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+       {{#if banners.banner3}}
+        <div class="carousel-item item4">
+            <div class="container">
+                <div class="w3l-space-banner">
+                    <div class="carousel-caption p-lg-5 p-sm-4 p-3">
+                        <p>Get
+                            <span>{{banners.banner4.discount}}%</span> Off
+                        </p>
+                        <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">ALL
+                            <span>{{banners.banner4.brand}}</span>
+                            products
+                        </h3>
+                        <p>{{banners.banner4.description}}
+                        </p>
+                        <a class="button2" href="/brandProducts?brandName={{banners.banner4.brand}}">Shop Now </a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    {{/if}}
+
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+{{/if}}
+<!-- //banner -->
+
+<!-- top Products -->
+<div class="ads-grid py-sm-5 py-4">
+    <div class="container py-xl-2 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            <span></span>
+            <span></span>
+            <span></span>
+        </h3>
+        <!-- //tittle heading -->
+        <div class="row">
+            <!-- product left -->
+            <div class="agileinfo-ads-display col-lg-12">
+                <div class="wrapper">
+                    <!-- first section -->
+                    {{#if data}}
+                    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                        <h3 class="heading-tittle text-center font-italic">New Arrivals</h3>
+                        <div class="row">
+                            {{#each data}}
+                            <div class="col-md-4 product-men mt-5">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item text-center">
+                                        <a href="/singleprod?id={{this._id}}"><img style="width: 250px; height: 250px;"
+                                                src="/products/{{this._id}}__1.jpg" alt=""></a>
+
+                                    </div>
+                                    <div class="item-info-product text-center border-top mt-4">
+                                        <h4 class="pt-1">
+                                            <a href="/singleProdGuest?id={{this._id}}">{{this.name}}</a>
+                                        </h4>
+                                        {{#if this.originalPrice}}
+                                        <div class="info-product-price my-2">
+                                            <label style="font-weight: bolder; color: firebrick;">{{this.discount}}%
+                                                Off</label>
+                                            <del class="mx-2 font-weight-light">₹ {{this.originalPrice}}</del>
+                                            <span class="item_price">₹ {{this.price}}</span>
+                                        </div>
+                                        {{else}}
+                                        <div class="info-product-price my-2">
+                                            <span class="item_price">₹{{this.price}}</span>
+                                        </div>
+                                        {{/if}}
+                                        <div
+                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                            <div>
+                                                <a href="/loginform?prodId={{this._id}}&token=guestToBuyNow"><button
+                                                        type="button" class="btn col-md-12"
+                                                        style="background-color: #7952b3;color: white;">Buy
+                                                        Now</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{/if}}
+                    <!-- //first section -->
+
+                </div>
+            </div>
+            <!-- //product left -->
+        </div>
+    </div>
+</div>
+<!-- //top products -->
+
+<!-- footer -->
+{{>userFooter}}
+<!-- //footer -->
+<!-- copyright -->
+<div class="copy-right py-3">
+    <div class="container">
+        <p class="text-center text-white">| © 2021 ETron. All rights reserved |
+        </p>
+    </div>
+</div>
+<!-- //copyright -->
+
+<!-- js-files -->
+<!-- jquery -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<!-- //jquery -->
+
+<!-- nav smooth scroll -->
+<script>
+    $(document).ready(function () {
+        $(".dropdown").hover(
+            function () {
+                $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                $(this).toggleClass('open');
+            },
+            function () {
+                $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                $(this).toggleClass('open');
+            }
+        );
+    });
+</script>
+<!-- //nav smooth scroll -->
+
+<!-- popup modal (for location)-->
+<script src="js/jquery.magnific-popup.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+</script>
+<!-- //popup modal (for location)-->
+
+<!-- cart-js -->
+
+<!-- //cart-js -->
+
+<!-- password-script -->
+<script>
+    window.onload = function () {
+        document.getElementById("password1").onchange = validatePassword;
+        document.getElementById("password2").onchange = validatePassword;
+    }
+
+    function validatePassword() {
+        var pass2 = document.getElementById("password2").value;
+        var pass1 = document.getElementById("password1").value;
+        if (pass1 != pass2)
+            document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+        else
+            document.getElementById("password2").setCustomValidity('');
+        //empty string means no validation error
+    }
+</script>
+<!-- //password-script -->
+
+<!-- scroll seller -->
+<script src="js/scroll.js"></script>
+<!-- //scroll seller -->
+
+<!-- smoothscroll -->
+<script src="js/SmoothScroll.min.js"></script>
+<!-- //smoothscroll -->
+
+<!-- start-smooth-scrolling -->
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top
+            }, 1000);
+        });
+    });
+</script>
+<!-- //end-smooth-scrolling -->
+
+<!-- smooth-scrolling-of-move-up -->
+<script>
+    $(document).ready(function () {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear' 
+        };
+        */
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+</script>
+<!-- //smooth-scrolling-of-move-up -->
+
+<!-- for bootstrap working -->
+<script src="js/bootstrap.js"></script>
+<!-- //for bootstrap working -->
+<!-- //js-files -->

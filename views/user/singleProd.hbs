@@ -1,0 +1,132 @@
+<!-- Single Page -->
+<div class="banner-bootom-w3-agileits py-5">
+    <div class="container py-xl-4 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            {{data.name}}</h3>
+        <!-- //tittle heading -->
+        <div class="row">
+            <div class="col-lg-5 col-md-8 single-right-left ">
+                <div class="grid images_3_of_2">
+                    <div class="flexslider">
+
+                        <ul class="slides" style="list-style: none;">
+                            <li data-thumb="/products/{{data._id}}__1.jpg">
+                                <div class="thumb-image">
+                                    <img src="/products/{{data._id}}__1.jpg" style="height: auto;width: 100%;"
+                                        class="big-image" id="preview">
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul class="pt-3" style="list-style: none;margin-left: 10%;">
+                            <li data-thumb="/products/{{data._id}}__2.jpg">
+                                <div class="thumb-image">
+                                    <img src="/products/{{data._id}}__2.jpg"
+                                        style="height: 80px; width: 80px; float: left; border-style: ridge;"
+                                        class="small" id="navitem1">
+                                </div>
+
+                            </li>
+                            <li data-thumb="/products/{{data._id}}__3.jpg">
+                                <div class="thumb-image">
+                                    <img src="/products/{{data._id}}__3.jpg"
+                                        style="height: 80px; width: 80px; float: left; border-style: ridge;"
+                                        class="small" id="navitem2">
+
+                                </div>
+                            </li>
+                            <li data-thumb="/products/{{data._id}}__1.jpg">
+                                <div class="thumb-image">
+                                    <img src="/products/{{data._id}}__1.jpg"
+                                        style="height: 80px; width: 80px; float: left; border-style: ridge;"
+                                        class="small" id="navitem3">
+
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 single-right-left simpleCart_shelfItem" style="padding-left:5% ;">
+                <div style="text-align: right;">
+                    <h1></h1>
+                </div>
+                {{#if data.originalPrice}}
+                <p class="mb-3">
+                    <span class="item_price">₹ {{data.price}}</span>
+                    <del class="mx-2 font-weight-light">₹ {{data.originalPrice}}</del>
+                    <label>Free delivery</label>
+                </p>
+                {{else}}
+                <p class="mb-3">
+                    <span class="item_price">₹{{data.price}}</span>
+                    <label>Free delivery</label>
+                </p>
+                {{/if}}
+                <div class="single-infoagile">
+                    <ul>
+                        <li class="mb-3">
+                            Cash on Delivery Available.
+                        </li>
+                        <li class="mb-3">
+                            TAGS:<a href="/categoryProducts?catName={{data.category}}">{{data.category}}</a>
+                            <a href="/brandProducts?brandName={{data.brand}}">{{data.brand}}</a>
+                        </li>
+                        <li class="mb-3">
+                            AVAILIBILTY:
+                            {{#eq data.stock '0'}}
+                            <span style="color: firebrick;font-weight:bolder">Out of stock</span>
+                            {{else}}
+                            <span style="color: forestgreen;font-weight: bolder;">In Stock</span>
+                            {{/eq}}
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="product-single-w3l">
+                    {{#eq data.stock '0'}}
+                    {{else}}
+                    {{#if data.originalPrice}}
+                    <p class="my-3">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <label style="font-weight: bolder; color: firebrick;">Buy now at {{data.discount}}% Off</label>
+                    </p>
+                    {{else}}
+
+                    {{/if}}
+                    {{/eq}}
+                    <ul style="list-style: none;">
+
+                        <li class="mb-1">
+                            {{data.description}}
+                        </li>
+                    </ul>
+                    <p class="my-sm-4 my-3">
+                        <i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit card
+                    </p>
+                </div>
+                <div class="occasion-cart">
+                    <div class="row">
+                        {{#eq data.stock '0'}}
+
+                        {{else}}
+
+
+                        <div style="margin-left: 1%;"><a href="/loginform?prodId={{data._id}}&token=guestToBuyNow"
+                                class="btn btn-success mt-3" style="width:auto%;">Buy
+                                now</a></div>
+                        {{/eq}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Single Page -->
+
+</section>
+{{>userFooter}}

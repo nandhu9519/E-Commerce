@@ -1,0 +1,465 @@
+{{!-- cropper --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+
+<div class="">
+    <div class="wrapper ">
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <a class="navbar-brand" href="javascript:void(0)">Product Management</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                        aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end">
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="/logout" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">person</i>
+                                    <p class="d-lg-none d-md-block">
+                                        Some Actions
+                                    </p>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="javascript:void(0)">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- End Navbar -->
+        <br>
+        <br>
+        <br>
+        <div class="container tm-mt-big tm-mb-big">
+            <div class="row">
+                <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+                    <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="tm-block-title d-inline-block">Edit Product</h2>
+                            </div>
+                        </div>
+                        <div class="row tm-edit-product-row">
+                            <div class="col-xl-6 col-lg-6 col-md-12">
+
+                                <form action="/admin/proEditSubmit?id={{data._id}}" method="POST" id="editProduct" role="form"
+                                    enctype="multipart/form-data" class="tm-edit-product-form">
+                                    <div class="form-group mb-3">
+                                        <input id="name" name="name" type="text" class="form-control validate" required
+                                            value="{{data.name}}" />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <input id="price" name="price" type="number" class="form-control validate"
+                                            required value="{{data.price}}" />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <textarea class="form-control validate" name="description" rows="3" required
+                                            placeholder="Description"
+                                            value="{{data.description}}">{{data.description}}</textarea>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="category">Category</label>
+                                        <br>
+                                        <select class="custom-select tm-select-accounts" id="category" name="category">
+                                            <option selected>{{data.category}}</option>
+                                            {{#each option.category}}
+                                            <option value="{{this.catName}}">{{this.catName}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="category">Brand</label>
+                                        <br>
+                                        <select class="custom-select tm-select-accounts" id="brand" name="brand" >
+                                            <option selected>{{data.brand}}</option>
+                                            {{#each option.brand}}
+                                            <option value="{{this.brandName}}">{{this.brandName}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="form-group mb-3 col-xs-12 col-sm-6" style="float: right;">
+                                            <label for="discount">Discount
+                                            </label>
+                                            <input id="discount" name="discount" type="number"
+                                                class="form-control validate" value="{{data.discount}}" />
+                                        </div>
+                                        <div class="form-group mb-3 col-xs-12 col-sm-6" style="float: right;">
+                                            <label for="stock">Units In Stock
+                                            </label>
+                                            <input id="stock" name="stock" type="number" class="form-control validate"
+                                                value="{{data.stock}}" />
+                                        </div>
+                                        
+                                    </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                                <label for="image-form">Add images </label>
+
+                                <div class="custom-file mt-3 mb-3">
+                                    <label for=""></label>
+                                    <img src="/products/{{data._id}}__1.jpg" alt="" style="width: 100px; height:auto"
+                                        id="imgview1">
+                                    <input type="file" name="image1" id="file1" class="form-control"
+                                        onchange="return fileValidation1()" data-toggle="modal"
+                                        data-target="#cropModal">
+                                </div>
+                                <br>
+                                <div class="custom-file mt-3 mb-3">
+                                    <label for=""></label>
+                                    <img src="/products/{{data._id}}__2.jpg" alt=""
+                                        style="width: 100px; height:auto; margin-top: 4px;" id="imgview2">
+                                    <input type="file" name="image2" id="file2" class="form-control"
+                                        onchange="return fileValidation2()" data-toggle="modal"
+                                        data-target="#cropModal">
+                                </div>
+                                <br>
+                                <div class="custom-file mt-3 mb-3">
+                                    <label for=""></label>
+                                    <img src="/products/{{data._id}}__3.jpg" alt="" style="width: 100px; height:auto"
+                                        id="imgview3">
+                                    <input type="file" name="image3" id="file3" class="form-control"
+                                        onchange="return fileValidation3()" data-toggle="modal"
+                                        data-target="#cropModal">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <br>
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase"
+                                    id="confirm-btn">Update
+                                    Product</button>
+                            </div>
+                            </form>
+
+                            <div class="modal fade" id="cropModal" tabindex="-1" role="dialog "
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle"
+                                                style="color:black; font-weight: bolder;">Crop
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" style="color:black; font-weight: lighter;">
+                                            <div style="width: auto; height: auto;" id="image-box"></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancel</button>
+                                            <button id="crop-btn" data-dismiss="modal" type="button"
+                                                class="btn btn-primary">Crop</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- <div class="modal fade" id="cropModal2" tabindex="-1" role="dialog "
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle2"
+                                            style="color:black; font-weight: bolder;">Crop
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="color:black; font-weight: lighter;">
+                                        <div style="width: auto; height: auto;" id="image-box2"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <a type="button" class="btn btn-primary" onchange="return fileValidation2()"
+                                            id="crop-btn2">Crop</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    {{!-- <div class="modal fade" id="cropModal3" tabindex="-1" role="dialog "
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle3"
+                                        style="color:black; font-weight: bolder;">Crop</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color:black; font-weight: lighter;">
+                                    <div style="width: auto; height: auto;" id="image-box3"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <a type="button" class="btn btn-primary" onchange="return fileValidation3()"
+                                        id="crop-btn3">Crop</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#editProduct").validate({
+            rules: {
+                name: {
+                    required: true
+                },
+                price: {
+                    required: true,
+                    min:0
+                },
+                description: {
+                    required: true
+                },
+                category: {
+                    required: true
+                },
+                brand: {
+                    required: true
+                },
+                discount: {
+                    min:0,
+                    max:100
+                },
+                stock:{
+                  required:true,
+                  min:0
+                },
+                {{!-- image1:{
+                  required:true,
+                  accept: "png|jpeg|jpg",
+                  filesize: 1048576
+                }, --}}
+                image2:{
+                  required:true
+                },
+                image3:{
+                  required:true
+                }
+            },
+            messages: {
+                name: {
+                    required: "Product name is required"
+                },
+                price: {
+                    required: "Product Price is required",
+                    min:"Price must be greater than zero"
+                },
+                description: {
+                    required: "Enter your product description",
+                },
+                category: {
+                    required: "Select a category"
+                },
+                brand: {
+                    required: "Select a brand"
+                },
+                discount: {
+                    min:"Discount must be more than 0%",
+                    max:"Discount must be less than 100%"  
+                },
+                 stock:{
+                  required:"Enter the stock available",
+                  min:"Minimum stock must be zero"
+                },
+                {{!-- image1:{
+                  required:"Upload product image",
+                  accept:"asdasd"
+                }, --}}
+                image2:{
+                  required:"Upload product image"
+                },
+                image3:{
+                  required:"Upload product image"
+                }
+            }
+        })
+    })
+</script>
+
+<script defer>
+    function fileValidation1() {
+        const imagebox = document.getElementById('image-box')
+        const crop_btn = document.getElementById('crop-btn')
+        var fileInput = document.getElementById('file1');
+
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.jpg || \.jpeg || \.png)$/i
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please upload file having extensions .jpeg only.');
+            fileInput.value = '';
+            return false;
+        } else {
+            //Image preview
+            const img_data = fileInput.files[0]
+            const url = URL.createObjectURL(img_data)
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+            const image = document.getElementById('image')
+            document.getElementById('image-box').style.display = 'block'
+            document.getElementById('crop-btn').style.display = 'block'
+            document.getElementById('confirm-btn').style.display = 'block'
+
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: true,
+                zoomable: true,
+                movable: true,
+                aspectRatio: 16 / 9,
+                // preview: '.preview',
+                minCropBoxWidth: 400,
+                minCropBoxHeight: 250,
+            })
+            crop_btn.addEventListener('click', () => {
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    let fileInputElement = document.getElementById('file1');
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    let container = new DataTransfer();
+
+                    container.items.add(file);
+                    console.log(container.files[0])
+                    const img = container.files[0]
+                    var url = URL.createObjectURL(img)
+                    fileInputElement.files = container.files;
+                    document.getElementById('imgview1').src = url
+                    document.getElementById('image-box').style.display = 'block'
+                    document.getElementById('crop-btn').style.display = 'block'
+                    document.getElementById('confirm-btn').style.display = 'block'
+                });
+            });
+        }
+    }
+
+    function fileValidation2() {
+        const imagebox = document.getElementById('image-box')
+        const crop_btn = document.getElementById('crop-btn')
+        var fileInput = document.getElementById('file2');
+
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.jpg|| \.jpeg || \.png)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please upload file having extensions .jpeg only.');
+            fileInput.value = '';
+            return false;
+        } else {
+            //Image preview
+            const img_data = fileInput.files[0]
+            const url = URL.createObjectURL(img_data)
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+            const image = document.getElementById('image')
+            document.getElementById('image-box').style.display = 'block'
+            document.getElementById('crop-btn').style.display = 'block'
+            document.getElementById('confirm-btn').style.display = 'block'
+
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: true,
+                zoomable: true,
+                movable: true,
+                aspectRatio: 16 / 9,
+                // preview: '.preview',
+                minCropBoxWidth: 180,
+                minCropBoxHeight: 240,
+            })
+            crop_btn.addEventListener('click', () => {
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    let fileInputElement = document.getElementById('file2');
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    let container = new DataTransfer();
+
+                    container.items.add(file);
+                    console.log(container.files[0])
+                    const img = container.files[0]
+                    var url = URL.createObjectURL(img)
+                    fileInputElement.files = container.files;
+                    document.getElementById('imgview2').src = url
+                    document.getElementById('image-box').style.display = 'block'
+                    document.getElementById('crop-btn').style.display = 'block'
+                    document.getElementById('confirm-btn').style.display = 'block'
+                });
+            });
+        }
+    }
+    function fileValidation3() {
+        const imagebox = document.getElementById('image-box')
+        const crop_btn = document.getElementById('crop-btn')
+        var fileInput = document.getElementById('file3');
+
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.jpg|| \.jpeg || \.png   )$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please upload file having extensions .jpeg only.');
+            fileInput.value = '';
+            return false;
+        } else {
+            //Image preview
+            const img_data = fileInput.files[0]
+            const url = URL.createObjectURL(img_data)
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+            const image = document.getElementById('image')
+            document.getElementById('image-box').style.display = 'block'
+            document.getElementById('crop-btn').style.display = 'block'
+            document.getElementById('confirm-btn').style.display = 'block'
+
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: true,
+                zoomable: true,
+                movable: true,
+                aspectRatio: 16 / 9,
+                // preview: '.preview',
+                minCropBoxWidth: 180,
+                minCropBoxHeight: 240,
+            })
+            crop_btn.addEventListener('click', () => {
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    let fileInputElement = document.getElementById('file3');
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    let container = new DataTransfer();
+
+                    container.items.add(file);
+                    console.log(container.files[0])
+                    const img = container.files[0]
+                    var url = URL.createObjectURL(img)
+                    fileInputElement.files = container.files;
+                    document.getElementById('imgview3').src = url
+                    document.getElementById('image-box').style.display = 'block'
+                    document.getElementById('crop-btn').style.display = 'block'
+                    document.getElementById('confirm-btn').style.display = 'block'
+                });
+            });
+        }
+    }
+</script>

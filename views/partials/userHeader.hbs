@@ -1,0 +1,282 @@
+<style>
+
+
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+
+    .main {
+        position: absolute;
+        z-index: 1;
+
+    }
+
+    .main li {
+        list-style: none;
+        background: blue;
+        width: 100px;
+        padding: 0 5px;
+        border: 1px solid black;
+        height: 30px;
+
+        line-height: 30px;
+
+        -webkit-transition: all .5s ease-in-out;
+
+    }
+
+    .main li:nth-child(odd) {
+
+        -webkit-transform-origin: top;
+        -webkit-transform: perspective(350px) rotateX(-90deg);
+    }
+
+    .main li:nth-child(even) {
+        margin-top: -65px;
+        -webkit-transform-origin: bottom;
+        -webkit-transform: perspective(350px) rotateX(90deg);
+    }
+
+
+
+    .hov:hover li:nth-child(odd) {
+        -webkit-transform-origin: top;
+        -webkit-transform: perspective(350px) rotateX(0deg);
+        margin-top: 0;
+    }
+
+    .hov:hover li:nth-child(even) {
+        -webkit-transform-origin: bottom;
+        -webkit-transform: perspective(350px) rotateX(0deg);
+        margin-top: 0;
+    }
+
+    .main li:first-child {
+        margin-top: 0;
+    }
+
+    .hov {
+        position: relative;
+        height: 40px;
+        width: 112px;
+        background: 7952b3;
+        color: white;
+        font-size: 13px;
+        font-family: Helvetica;
+        font-weight: bold;
+        text-align: center;
+        line-height: 40px;
+        list-style: none;
+        z-index: 2;
+
+    }
+</style>
+
+<script>
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+    function search() {
+        var searchKey = document.getElementById('searchKey').value
+        if (searchKey != '') {
+            document.getElementById('searchbar').innerHTML = ''
+
+            console.log(searchKey)
+            $.ajax({
+                url: '/search',
+                data: {
+                    key: searchKey,
+                },
+                method: 'post',
+                success: (response) => {
+                    console.log(response)
+                    document.getElementById('searchRsltErr').style.display = 'none'
+                    if (response.length > 0) {
+                        var result = []
+                        for (i = 0; i < response.length; i++) {
+                            result[i] = { name: response[i].name, id: response[i]._id }
+                        }
+
+
+                        var ul = document.getElementById('searchbar')
+                        var aTag = []
+
+                        for (i = 0; i < result.length; i++) {
+                            aTag[i] = document.createElement('a')
+                            aTag[i].setAttribute('id', `${result[i].id}`)
+                            aTag[i].innerHTML = `${result[i].name}`
+                            aTag[i].href = `/singleview/${result[i].id}`
+
+                            $('#searchbar').append(`<a href="${aTag[i]}" style="margin-left: 25px;"> <img src="/productImages/${result[i].id}__1.jpg"  style="height: 50px;float:left;border-radius:80px" alt="">${result[i].name}</a>`)
+                            $("#searchbar").append(`<hr>`)
+                            $("#searchbar").append(`<br>`)
+                        }
+
+
+                    } else {
+                        document.getElementById('searchbar').innerHTML = ''
+                        document.getElementById('searchRsltErr').style.display = 'block'
+                        document.getElementById('searchRsltErr').innerHTML = '<span style="color:red">No items match your search</span>'
+                    }
+
+
+                }
+            })
+        } else {
+            document.getElementById('searchbar').innerHTML = ''
+            document.getElementById('searchRsltErr').style.display = 'block'
+            document.getElementById('searchRsltErr').innerHTML = '<span style="color:red">Please enter any key to search</span>'
+        }
+
+    }
+</script>
+<!-- top-header -->
+
+<div class="agile-main-top ">
+    <div class="container-fluid">
+        <div class="row main-top-w3l py-2">
+            <div class="col-lg-6 header-right mt-4">
+                <!-- header lists -->
+
+                <ul>
+
+                    <li class="hov">
+                        <a class="nav-link dropdown-toggle"
+                            style="color: white; font-size: larger; font-weight: bolder;" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/Profile">Profile</a>
+
+
+                            <a class="dropdown-item" href="/orders">Orders</a>
+                            <a class="dropdown-item" href="/userLogout">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+                <!-- //header lists -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- header-bottom-->
+<div class="header-bot">
+    <div class="container">
+        <div class="row header-bot_inner_wthreeinfo_header_mid">
+            <!-- logo -->
+            <div class="col-md-3 logo_agile">
+                <h1 class="text-center">
+                    <a href="/" class="font-weight-bold font-italic">
+                        <img src="images/logo2.png" alt=" " class="img-fluid">ETron bay
+                    </a>
+                </h1>
+            </div>
+            <!-- //logo -->
+            <!-- header-bot -->
+            <div class="col-md-9 header mt-4 mb-md-0 mb-4">
+                <div class="row">
+                    <!-- search -->
+                    <div class="col-md-10 col-sm-6 agileits_search">
+                        <form class="form-inline" action="/search" method="POST">
+                            <input class="form-control mr-sm-2" type="search" name="key" placeholder="Search"
+                                id="searchKey" aria-label="Search" required>
+                            <button class="btn my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </div>
+                    <!-- //search -->
+
+                    <!-- cart details -->
+                    <div class="col-md-2 col-sm-6 top_nav_right text-center mt-sm-0 mt-2">
+                        <div class="row" style="padding-left: 5%;">
+                            <div class="cart" >
+                                <a href="/cart">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                        class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z" />
+                                    </svg>
+                                    <span class="badge badge-danger" id="cartCount">{{cartCount}}</i>
+                                </a>
+                            </div>
+                            <div class="wishlist" style="padding-left: 5%; padding-top: 4%;">
+                                <a href="/wishlist"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                        fill="#7952b3" class="bi bi-heart-fill" style="color: #7952b3;"
+                                        viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                        <span class="badge badge-danger" id="cartCount">{{wishListCount}}
+                                    </svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="position: absolute; z-index: 10000 !important;background-color: white;width: 100%;justify-content: left;
+                        margin-top: 53px">
+                        <a href="#">
+                            <div id="searchbar" img="" class="text" ></div>
+                        </a>
+                        <div id="searchRsltErr" class="text-center" style="">
+                        </div>
+                    </div>
+                    <!-- //cart details -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- shop locator (popup) -->
+<!-- //header-bottom -->
+<!-- navigation -->
+<div class="navbar-inner">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-center mr-xl-5">
+                    <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
+                        <a class="nav-link" href="/">HOME
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                     <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <a class="nav-link" href="/shopByCategory">SHOP BY CATEGORY</a>
+                    </li>
+                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <a class="nav-link" href="/shopByBrand">SHOP BY BRAND</a>
+                    </li>
+                    
+                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <a class="nav-link" href="/offerZone">OFFER ZONE</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- //navigation -->

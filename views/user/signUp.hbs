@@ -1,0 +1,182 @@
+<style>
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        display: block;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        padding: 4px;
+
+        height: 32px;
+        border: none;
+        border-bottom: 1px solid #AAA;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        transition: 0.2s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        border-bottom: 2px solid #7952b3;
+        color: #16a085;
+        transition: 0.2s ease;
+    }
+
+    input[type="submit"] {
+        margin-top: 28px;
+        width: 120px;
+        height: 32px;
+        background: #7952b3;
+        border: none;
+        border-radius: 2px;
+        color: #FFF;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        text-transform: uppercase;
+        transition: 0.1s ease;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover,
+    input[type="submit"]:focus {
+        opacity: 0.8;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        transition: 0.1s ease;
+    }
+
+    input[type="submit"]:active {
+        opacity: 1;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        transition: 0.1s ease;
+    }
+</style>
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-white text-dark" style="border-radius: 1rem;">
+                    <div class="card-body p-3 text-center">
+
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <h1 class="text-center">
+                                <a href="/" style="text-decoration: none; color:  #7952b3;"
+                                    class="font-weight-bold font-italic">
+                                    <img src="images/logo2.png" alt=" " class="img-fluid">ETron bay
+                                </a>
+                            </h1>
+
+                            <h2 class="fw-bold mb-2 text-uppercase" style="color: black;">Sign Up </h2>
+                            <p class="text-dark-50 mb-5">Enter your credentials for a quick signUp</p>
+                            <div class="form" style="padding: 4%;">
+                                <form action="/signUpValidation" method="POST" role="form" id="loginForm">
+                                    <div class="row">
+                                        <div class="form-outline form-white  col-md-6">
+                                            <input type="text" name="user" placeholder="First Name" 
+                                                id="firstNameId" class="form-control form-control-lg" />
+                                        </div>
+                                        <div class="form-outline form-white  col-md-6">
+                                            <input type="text" name="lastName" placeholder="Last Name" name="lastName"
+                                                id="lastName" class="form-control form-control-lg" />
+                                        </div>
+                                    </div>
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="email" name="email" placeholder="E-mail" name="email" id="email"
+                                            class="form-control form-control-lg" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-outline form-white col-md-3">
+                                            <input type="number" name="" placeholder="+91" name="" id="contact"
+                                                class="form-control form-control-lg" readonly />
+                                        </div>
+                                        <div class="form-outline form-white  col-md-9">
+                                            <input type="number" name="contact" placeholder="Contact" 
+                                                id="contact" class="form-control form-control-lg" />
+                                        </div>
+                                    </div>
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="password" name="password" placeholder="Password" id="passwordid"
+                                             class="form-control form-control-lg" />
+                                    </div>
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="password" name="password2" placeholder="Re-enter password"
+                                            class="form-control form-control-lg" />
+                                    </div>
+                                    <br>
+                                    <button class="btn btn-outline-dark btn-lg px-5" type="submit">SignUp</button>
+                                </form>
+                            </div>
+
+                            {{#if signupError}}
+                            <span style="color: firebrick;">User with similar email-Id Exist,use another email</span>
+                            {{/if}}
+                            <div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+
+
+<script>
+    $(document).ready(function () {
+        $("#loginForm").validate({
+            rules: {
+                user: {
+                    required: true
+                },
+                lastName: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                contact: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                password2: {
+                    required: true,
+                    equalTo:"#passwordid" 
+                }
+            },
+            messages: {
+                user: {
+                    required: "First Name is required"
+                },
+                lastName: {
+                    required: "Last Name is required"
+                },
+                email: {
+                    required: "Email is required",
+                },
+                contact: {
+                    required: "Contact is required",
+                    minlength: "Enter a valid contact",
+                    maxlength: "Enter a valid contact"
+                },
+                password: {
+                    required: "Enter a password",
+                    minlength: "Weak Password, Lenght must be minimum 5 characters"
+                },
+                password2: {
+                    required:"Re-Enter password",
+                    equalTo: "Password does not match"
+                }
+            }
+        })
+    })
+</script>

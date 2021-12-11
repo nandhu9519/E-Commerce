@@ -1,0 +1,307 @@
+<!--Section: Block Content-->
+<section class="container">
+
+  <!--Grid row-->
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-lg-8">
+
+      <!-- Card -->
+      <div class="mb-3">
+        <div class="pt-4 wish-list">
+          {{#if products}}
+          <h5 class="mb-4">Cart <span></span> items</h5>
+
+
+          {{#each products}}
+
+          <div class="row mb-4">
+            <div class="col-md-5 col-lg-3 col-xl-3">
+              <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                <img class="img-fluid w-100" src="/products/{{this.product._id}}__1.jpg" id='prod' alt="Sample">
+                <a href="#!">
+                  {{!-- <div class="mask">
+                    <img class="img-fluid w-100"
+                      src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg">
+                    <div class="mask rgba-black-slight"></div>
+                  </div> --}}
+                </a>
+              </div>
+            </div>
+            <div class="col-md-7 col-lg-9 col-xl-9">
+              <div>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h5>{{this.product.name}}</h5>
+                    <p class="mb-3 text-muted text-uppercase small">CATEGORY:{{this.product.category}}</p>
+                    <p class="mb-2 text-muted text-uppercase small">BRAND: {{this.product.brand}}</p>
+                    <p class="mb-3 text-muted text-uppercase small"></p>
+                  </div>
+
+                  <div>
+
+                    <p class="mb-3 text-muted text-uppercase small">Unit price:</p>
+                    {{#if this.product.offerPrice}}
+                    <p class="mb-0"><span style="color: firebrick;"><strong id="summary">₹
+                          {{this.product.offerPrice}}</strong></span></p class="mb-0">
+                    {{else}}
+                    <p class="mb-0"><span style="color: firebrick;"><strong id="summary">₹
+                          {{this.product.price}}</strong></span></p class="mb-0">
+                    {{/if}}
+                    {{!-- <div class="def-number-input number-input safari_only mb-0 w-100">
+                      <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                        class="minus decrease"></button>
+
+                      <input class="quantity" min="0" name="quantity" value="1" type="number">
+                      <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                        class="plus increase"></button>
+                    </div> --}}
+
+                    <small id="passwordHelpBlock" class="form-text text-muted text-center">
+                    </small>
+                  </div>
+                </div>
+                <div class="align-items-center">
+                  <div>
+                    <a href="#" onclick="deleteConfirmation('{{this.product._id}}','{{this._id}}');" type="button"
+                      class="card-link-secondary small text-uppercase mr-3"><i class="fas fa-trash-alt mr-1"></i> Remove
+                      item </a>
+                  </div>
+
+                  <br>
+                  <div class="d-flex justify-content-between">
+                    <div class="qty" style="width: 100px;">
+                      <p class="mb-3 text-muted text-uppercase small">QTY:</p>
+                      
+                  
+                       <button
+                        onclick="changeQuantity('{{this._id}}','{{this.product.price}}','{{this.product._id}}','{{../userData}}',-1,'{{this.product.stock}}')"
+                        style="width: 25px; background-color:#7952b3; color: white;margin-left: 2%;">-</button>
+
+                      <span id="{{this.product._id}}" style="margin-left: 2%;">{{this.quantity}}</span>
+
+                      <button style="width: 25px; background-color:#7952b3; color: white;"
+                        onclick="changeQuantity('{{this._id}}','{{this.product.price}}','{{this.product._id}}','{{../userData}}',1,'{{this.product.stock}}')">+</button>
+
+                    
+                     
+                    </div>
+                    <div>
+                      <p class="mb-3 text-muted text-uppercase small">Total:</p>
+                      <span style="color: firebrick">₹<strong
+                          id='{{this.product._id}}_1'>{{this.totalPrice}}</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          {{/each}}
+
+          {{!-- <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
+            items to your cart does not mean booking them.</p> --}}
+
+        </div>
+      </div>
+      <!-- Card -->
+
+      <!-- Card -->
+      {{!-- <div class="mb-3">
+        <div class="pt-4">
+
+          <h5 class="mb-4">Expected shipping delivery</h5>
+
+          <p class="mb-0"> Thu., 12.03. - Mon., 16.03.</p>
+        </div>
+      </div> --}}
+      <!-- Card -->
+
+      <!-- Card -->
+
+      <!-- Card -->
+
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-4">
+
+      <!-- Card -->
+      <div class="mb-3">
+        <div class="pt-4">
+
+          <h5 class="mb-3"></h5>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Total product amount
+              <span>₹ <strong class="total" style="color: firebrick;"> {{totalAmount}}</strong></span>
+            </li>
+            <hr>
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+              Shipping
+              <span>Free</span>
+            </li>
+            <hr>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+              <div>
+                <strong>You need to pay</strong>
+                <strong>
+                  <p class="mb-0"></p>
+                </strong>
+              </div>
+              <span>₹ <strong class="total" style="color: firebrick;"> {{totalAmount}}</strong></span>
+            </li>
+            <hr>
+          </ul>
+
+          <a href="/checkout"><button type="button" class="btn btn-primary btn-block">go to checkout</button></a>
+
+        </div>
+      </div>
+      <!-- Card -->
+
+      <!-- Card -->
+      <div class="mb-3">
+        <div class="pt-4">
+          {{/if}}
+
+          {{#if cart}}
+          <div class="row" style="margin-top: 8%; margin-left: 40%;">
+            <div class="col-md-12">
+
+
+              <h5></h5>
+            </div>
+            <div class="card-body cart">
+              <div class="col-sm-12 empty-cart-cls text-center"> <img
+                  src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-2130356-1800917.png"
+                  class="img-fluid mb-4 mr-3">
+                <h3><strong>Your Cart is Empty</strong></h3>
+                <h4>Add products to cart ... </h4> <a href="/" class="btn btn-primary cart-btn-transform m-3"
+                  data-abc="true">continue shopping</a>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      {{/if}}
+      <!-- Card -->
+
+    </div>
+    <!--Grid column-->
+
+  </div>
+  <!-- Grid row -->
+
+
+</section>
+<!--Section: Block Content-->
+{{>userFooter}}
+
+
+<script>
+  function deleteConfirmation(prodId, cartId) {
+    Swal.fire({
+      title: 'Remove Product from Cart?',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#7952b3',
+      cancelButtonColor: '#7952b',
+      confirmButtonText: 'OK'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeProduct(prodId, cartId)
+      }
+    })
+  }
+  
+  var stockCounter
+  function changeQuantity(cartId, price, proId, userId, count,stock) {
+    let prodqty=parseInt(document.getElementById(proId).innerHTML)
+    console.log(prodqty,'prodqty')
+     stockCounter=prodqty
+    if(count==1)
+    { 
+      stockCounter+=1
+      console.log(stockCounter,'stockCounter')
+    }else if(count==-1)
+    { 
+      stockCounter-=1
+    }
+    if(stockCounter>stock)
+    {
+      swal({
+            title: "Alert", text: "No more Stock available", type:
+              "error"
+          })
+    }else
+    {
+    let id = proId + '_1'
+   let quantity = parseInt(document.getElementById(proId).innerHTML)
+    count = parseInt(count)
+    if(count==1 && quantity==5){
+      swal({
+            title: "Alert", text: "Maximum quantity reached!", type:
+              "error"
+          })
+    }else
+    {
+    $.ajax({
+      url: '/change-product-quantity',
+      data: {
+        cart: cartId,
+        product: proId,
+        user: userId,
+        count: count,
+        quantity: quantity,
+        price: parseInt(price)
+      },
+      method: 'post',
+      success: (response) => {
+
+        if (response.status==false) {
+          swal({
+            title: "Alert", text: "Minimum quantity reached!", type:
+              "error"
+          })
+        }
+        else {
+          let a = document.getElementById(proId).innerHTML = quantity + count
+          document.getElementsByClassName('total')[0].innerHTML = response.totalAmount
+          document.getElementsByClassName('total')[1].innerHTML = response.totalAmount
+          document.getElementById(id).innerHTML = price * a
+        }
+      }
+    })
+    }
+    }
+  }
+
+  function removeProduct(prodId, cartId) {
+
+    $.ajax({
+
+      url: '/removeCartProduct',
+      data: {
+        product: prodId,
+        cart: cartId,
+      },
+      method: 'post',
+      success: (response) => {
+        if (response.removeProduct) {
+           alertify.error("Item Removed From Cart");
+        setTimeout(function () {
+          location.reload();
+        },500);
+        }
+      }
+    })
+  }
+
+</script>

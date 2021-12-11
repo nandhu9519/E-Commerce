@@ -1,0 +1,17 @@
+<div class="row">
+    {{#each data}}
+    <div class="col-md-4 product-men mt-5">
+        <div class="men-pro-item simpleCart_shelfItem">
+            <div class="men-thumb-item text-center">
+                <a href="/singleprod?id={{this._id}}"><img style="width: 300px; height: 300px;"
+                        src="/products/{{this._id}}__1.jpg" alt=""></a>
+            </div>
+            <div class="item-info-product text-center border-top mt-4">
+                <h4 class="pt-1">
+                    <a href="/singleprod?id={{this._id}}">{{this.name}}</a>
+                </h4>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

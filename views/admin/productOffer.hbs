@@ -1,0 +1,235 @@
+<div class="">
+    <div class="wrapper ">
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <a class="navbar-brand" href="">Product Offer Management</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                        aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end">
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">person</i>
+                                    <p class="d-lg-none d-md-block">
+                                        Some Actions
+                                    </p>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/admin/logout">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container mt-5">
+
+                <div class="row tm-content-row">
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                        <div class="tm-bg-primary-dark tm-block tm-block-products">
+                            <div class="tm-product-table-container">
+                                <form id="productOfferAdd" role="form" class="tm-edit-product-form">
+                                    <div class="form-group mb-3">
+                                        <label for="category">Products</label>
+                                        <br>
+                                        <select class="custom-select tm-select-accounts" id="product" name="product" style="color: black;">
+                                            <option value="">Choose one...</option>
+                                            {{#each products}}
+                                            <option value="{{this.name}}">{{this.name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <input id="discount" name="discount" type="number" class="form-control validate"
+                                            required placeholder="Discount in Percentage" />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="date">Offer Expiry Date</label><br>
+                                        <input type="date" id="date" name="date">
+                                    </div>
+
+                                    <button class="btn btn-primary text-uppercase mb-3" type="submit"
+                                        onclick="offerSubmit()">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        Add New Product Offer
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-hover tm-table-small tm-product-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">SL NO</th>
+                                <th scope="col">PRODUCT NAME</th>
+                                <th scope="col">OFFER(%)</th>
+                                <th scope="col">REMOVE OFFER</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each offerProducts}}
+                            <tr>
+
+                                <td class="tm-product-name">{{add @index '1'}}</td>
+                                <td>{{this.product}}</td>
+                                <td>{{this.discount}}</td>
+                                <td>
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#{{this._id}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path
+                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                            <path fill-rule="evenodd"
+                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td>
+                                    <!-- Delete alert Modal -->
+                                    <div class="modal fade" id="{{this._id}}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle"
+                                                        style="color:black; font-weight: bolder;">Delete
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" style="color:black; font-weight: lighter;">
+                                                    Delete Offer?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Cancel</button>
+                                                    <a type="button" class="btn btn-primary"
+                                                        onclick="deleteOffer('{{this._id}}')"
+                                                        data-dismiss="modal">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Delete alert Modal -->
+                                </td>
+
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let today = new Date(), 
+            day = today.getDate(),
+            month = today.getMonth() + 1, //January is 0
+            year = today.getFullYear();
+        if (day < 10) {
+            day = '0' + day
+        }
+        if (month < 10) {
+            month = '0' + month
+        }
+        today = year + '-' + month + '-' + day;
+
+        document.getElementById("date").setAttribute("min", today);
+        document.getElementById("date").setAttribute("value", today);
+
+        function deleteOffer(offerId) {
+
+            $.ajax({
+                url: '/admin/deleteProductOffer?offerId=' + offerId,
+                method: 'get',
+                success: (response) => {
+                    if (response.status) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Offer Removed',
+                            showConfirmButton: false,
+                            timer: 1000
+                        }).then(() => {
+                            location.reload()
+                        })
+                    }
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            $("#productOfferAdd").validate({
+                rules: {
+                    product: {
+                        required: true,
+                    },
+                    discount: {
+                        required: true,
+                        maxlength: 2
+                    },
+                    date: {
+                        required: true
+                    }
+                },
+                messages: {
+                    product: {
+                        required: "Select a product"
+
+                    },
+                    discount: {
+                        required: "Enter discount in percentage",
+                        maxlength: "Maximum discount must be less than 100%"
+                    },
+                    date: {
+                        required: "Enter expiry date"
+                    }
+                },
+                submitHandler: () => {
+                    $.ajax({
+                        url: '/admin/addProductOffer',
+                        method: 'post',
+                        data: $('#productOfferAdd').serialize(),
+                        success: (response) => {
+                            if (response.status == false) {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'error',
+                                    title: 'Offer Already Exist For The Selected Product',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                }).then(() => {
+                                    location.reload()
+                                })
+                            } else {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Offer Added ',
+                                    showConfirmButton: false,
+                                    timer: 1000
+                                }).then(() => {
+                                    location.reload()
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        })
+    </script>

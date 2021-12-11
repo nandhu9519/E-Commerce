@@ -1,0 +1,88 @@
+<!-- top Products -->
+<div class="ads-grid py-sm-5 py-4">
+    <div class="container py-xl-2 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            <span></span>
+            <span></span>
+            <span></span>
+        </h3>
+        <!-- //tittle heading -->
+        <div class="row">
+            <!-- product left -->
+            <div class="agileinfo-ads-display col-lg-12">
+                <div class="wrapper">
+                    <!-- first section -->
+                    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                        <h3 class="heading-tittle text-center font-italic">{{category}}</h3>
+                        <div class="row">
+                            {{#each products}}
+                            <div class="col-md-4 product-men mt-5">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item text-center">
+                                        
+                                        <a href="/singleprod?id={{this._id}}"><img style="width: 300px; height: 300px;"
+                                                src="/products/{{this._id}}__1.jpg" alt=""></a>
+                                    </div>
+                                    
+                                    <div class="item-info-product text-center border-top mt-4">
+                                        <h4 class="pt-1">
+                                            <a href="/singleprod?id={{this._id}}">{{this.name}}</a>
+                                        </h4>
+                                        {{#if this.originalPrice}}
+                                         <div class="info-product-price my-2">
+                                            <label style="font-weight: bolder; color: firebrick;">{{this.discount}}% Off</label>
+                                            <del class="mx-2 font-weight-light">₹ {{this.originalPrice}}</del>
+                                            <span class="item_price">₹ {{this.price}}</span>
+                                        </div>
+                                        {{else}}
+                                        <div class="info-product-price my-2">
+                                            <span class="item_price">₹{{this.price}}</span>
+                                        </div>
+                                        {{/if}}  
+                                        <div class="row" style="margin-left: 15%;">
+                                            {{#if guestHome}}
+                                            <div>
+                                                <a href="/buyNowCheckOut?id={{this._id}}"><button type="button"
+                                                        class="btn "
+                                                        style="margin-left: 10%;background-color: #7952b3;color: white;">Buy
+                                                        Now</button></a>
+                                            </div>
+                                            
+                                            {{else if loggedinStatus}}
+                                            asdas
+                                            {{#if this.offerPrice}}
+                                            {{#hello ../cart this._id this.offerPrice }}
+                                            {{/hello}}
+
+                                            {{else}}
+
+                                            {{#hello ../cart this._id this.price }}
+                                            {{/hello}}
+                                            {{/if}}
+                                            
+                                            <div>
+                                                <a href="/buyNowCheckOut?id={{this._id}}"><button type="button"
+                                                        class="btn "
+                                                        style="margin-left: 10%;background-color: #7952b3;color: white;">Buy
+                                                        Now</button></a>
+                                            </div>
+                                            {{/if}}
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //product left -->
+        </div>
+    </div>
+</div>
+<!-- //top products -->
+{{>userFooter}}
+

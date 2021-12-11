@@ -1,0 +1,70 @@
+<!-- top Products -->
+<div class="ads-grid py-sm-5 py-4">
+    <div class="container py-xl-2 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            <span></span>
+            <span></span>
+            <span></span>
+        </h3>
+        <!-- //tittle heading -->
+        <div class="row">
+            <!-- product left -->
+            <div class="agileinfo-ads-display col-lg-12">
+                <div class="wrapper">
+                    {{#if brand.brand}}
+                    <!-- first section -->
+                    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                        <h3 class="heading-tittle text-center font-italic">BRANDS</h3>
+                        <div class="row">
+                        
+                          {{#each brand.brand}}
+                            <div class="col-md-4 product-men mt-5">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item text-center">
+                                        <a href="/brandProducts?catName={{this.brandName}}"><img style="width: 250px; height: 250px;" src="/brands/{{this._id}}.jpg" alt=""></a>
+                                       
+                                    </div>
+                                    <div class="item-info-product text-center  mt-4">
+                                        <h4 class="pt-1">
+                                        {{this.brandName}}
+                                        </h4><br>
+                                        {{!-- {{#if this.originalPrice}}
+                                         <div class="info-product-price my-2">
+                                             <label style="font-weight: bolder; color: firebrick;">{{this.discount}}% Off</label>
+                                            <del class="mx-2 font-weight-light">₹ {{this.originalPrice}}</del>
+                                            <span class="item_price">₹ {{this.price}}</span>
+                                        </div>
+                                        {{else}}
+                                        <div class="info-product-price my-2">
+                                            <span class="item_price">₹{{this.price}}</span>
+                                        </div>
+                                        {{/if}}  --}}
+                                        <div
+                                            class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                            <div>
+                                                <a href="/brandProducts?brandName={{this.brandName}}"><button type="button"
+                                                        class="btn col-md-12"
+                                                        style="background-color: #7952b3;color: white;">Shop
+                                                        Now</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         {{/each}}
+                         </div>
+                    </div>
+                    {{/if}}
+                    <!-- //first section -->
+             
+                </div>
+            </div>
+            <!-- //product left -->
+        </div>
+    </div>
+</div>
+<!-- //top products -->
+
+<!-- footer -->
+{{>userFooter}}
