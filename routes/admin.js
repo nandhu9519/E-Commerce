@@ -6,7 +6,6 @@ var productHelper = require("../helpers/productHelpers");
 const userHelpers = require("../helpers/userHelpers");
 const { route } = require("./user");
 
-/* GET users listing. */
 router.get("/", async function (req, res, next) {
   if (req.session.adminLogin) {
     let orderCount = await productHelper.orderCount();

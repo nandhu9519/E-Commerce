@@ -266,7 +266,7 @@
       var fileInput = document.getElementById('file1');
 
       var filePath = fileInput.value;
-      var allowedExtensions = /(\.jpg\.jpeg\.png)$/i;
+      var allowedExtensions = /(\.jpg || \.jpeg || \.png)$/i;
       if (!allowedExtensions.exec(filePath)) {
         alert('Please upload file having extensions .jpeg .jpg and .png only.');
         fileInput.value = '';
@@ -328,7 +328,7 @@
       var fileInput = document.getElementById('file2');
 
       var filePath = fileInput.value;
-      var allowedExtensions = /(\.jpg\.jpeg\.png)$/i;
+      var allowedExtensions = /(\.jpg || \.jpeg || \.png)$/i;
       if (!allowedExtensions.exec(filePath)) {
         alert('Please upload file having extensions .jpeg only.');
         fileInput.value = '';

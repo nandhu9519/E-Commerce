@@ -119,7 +119,7 @@ module.exports = {
         db.get()
           .collection(collection.ORDER_COLLECTION)
           .updateOne(
-            {
+             {
               _id: objectId(orderId),
               products: { $elemMatch: { item: objectId(prodId) } },
             },
